@@ -17,10 +17,11 @@ const trackerScriptURL = process.env.TRACKER_SCRIPT_URL || '';
 const contentSecurityPolicy = `
   default-src 'self';
   img-src 'self' https: data:;
-  script-src 'self' 'unsafe-eval' 'unsafe-inline';
+  script-src 'self' 'unsafe-eval' 'unsafe-inline' blob:;  // ✅ 添加 blob:
   style-src 'self' 'unsafe-inline';
   connect-src 'self' https:;
   frame-ancestors 'self' ${frameAncestors};
+  worker-src 'self' blob:;  // ✅ 添加 worker-src
 `;
 
 const defaultHeaders = [
